@@ -1,0 +1,15 @@
+.input{
+    display: flex;
+    width: 30%;
+    align-items: center;
+}
+.input__box{
+    width: 100%;
+    font-size: 20px;
+}
+.input__submit{
+    width: 30px;
+    height: 30px;
+    margin: 6px;
+    font-size: 10px;
+}

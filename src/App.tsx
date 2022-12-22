@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Input from './components/Input'
+import Search from './components/Search'
+import { Ekle } from './model'
 
-function App() {
+const App: React.FC = () => {
+  const [ekle,setEkle] = useState<string>("");
+  const [ekles,setEkles] = useState<Ekle[]>([]);
+
+  const elleEkle = (e: React.FormEvent) => {
+    e.preventDefault();
+    if(ekle){
+    setEkles([...ekles,{id:Date.now(), ekle,isDone:false}])
+    setEkle("");
+    }
+  };
+  console.log(ekles);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <span className="baslik">Telefon-Fihrist</span>
+      <Input ekle={ekle} setEkle={setEkle} elleEkle={elleEkle}/>
+      {ekles.map(
+        (t) => (
+          <li className='asd'>{t.ekle}</li>
+        )
+      )}
+      {/*<Search />*/}
     </div>
   );
 }
