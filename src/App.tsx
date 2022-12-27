@@ -23,7 +23,7 @@ const App: React.FC = () => {
       <Input ekle={ekle} setEkle={setEkle} elleEkle={elleEkle}/>
       {ekles.map(
         (t) => (
-          <li className='asd'>{t.ekle}</li>
+          <li className='list'>{t.ekle}</li>
         )
       )}
       {/*<Search />*/}
