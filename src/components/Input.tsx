@@ -12,7 +12,7 @@ interface Props {
 
   ekleee: string;
   setEkleee: React.Dispatch<React.SetStateAction<string>>;
-  elleEkleee: (t: React.FormEvent) => void;
+  elleEkleee: (a: React.FormEvent) => void;
 }
 
 const Input: React.FC<Props> = ({ ekle, setEkle, elleEkle, eklee, setEklee, elleEklee, ekleee,setEkleee,elleEkleee}) => {
@@ -29,7 +29,7 @@ const Input: React.FC<Props> = ({ ekle, setEkle, elleEkle, eklee, setEklee, elle
       <input
         type="input"
         value={eklee}
-        onChange={(e) => setEklee(e.target.value)}
+        onChange={(t) => setEklee(t.target.value)}
         placeholder="Soyad"
         className="input__box"
       />
@@ -37,7 +37,7 @@ const Input: React.FC<Props> = ({ ekle, setEkle, elleEkle, eklee, setEklee, elle
       <input
         type="input"
         value={ekleee}
-        onChange={(e) => setEkleee(e.target.value)}
+        onChange={(a) => setEkleee(a.target.value)}
         placeholder="Tel"
         className="input__box"
       />
