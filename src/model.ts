@@ -10,4 +10,8 @@ export interface Ekle{
     iddd: number;
     ekleee: string;
     isDoneee: boolean;
+
+    idddd: number;
+    ekleeee: string;
+    isDoneeee: boolean;
 }

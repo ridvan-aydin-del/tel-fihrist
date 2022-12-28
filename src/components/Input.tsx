@@ -1,6 +1,12 @@
 import React from "react";
 import "./styles.css";
 
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Table } from 'reactstrap';
+
 interface Props {
   ekle: string;
   setEkle: React.Dispatch<React.SetStateAction<string>>;
@@ -13,9 +19,13 @@ interface Props {
   ekleee: string;
   setEkleee: React.Dispatch<React.SetStateAction<string>>;
   elleEkleee: (a: React.FormEvent) => void;
+
+  ekleeee: string;
+  setEkleeee: React.Dispatch<React.SetStateAction<string>>;
+  elleEkleeee: (a: React.FormEvent) => void;
 }
 
-const Input: React.FC<Props> = ({ ekle, setEkle, elleEkle, eklee, setEklee, elleEklee, ekleee,setEkleee,elleEkleee}) => {
+const Input: React.FC<Props> = ({ ekle, setEkle, elleEkle, eklee, setEklee, elleEklee, ekleee,setEkleee,elleEkleee, ekleeee,setEkleeee,elleEkleeee}) => {
   return (
     <form className="input" onSubmit={(e) => elleEkle(e)}>
       <input
@@ -41,10 +51,16 @@ const Input: React.FC<Props> = ({ ekle, setEkle, elleEkle, eklee, setEklee, elle
         placeholder="Tel"
         className="input__box"
       />
+      <input
+        type="input"
+        value={ekleeee}
+        onChange={(b) => setEkleeee(b.target.value)}
+        placeholder="Ülke"
+        className="input__box"
+      />
 
-      <button className="input__submit" type="submit">
-        Go
-      </button>
+      
+<Button variant="primary" type="submit">Ekle</Button>
     </form>
   );
 };
