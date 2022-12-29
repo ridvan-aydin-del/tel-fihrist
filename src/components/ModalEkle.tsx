@@ -13,9 +13,13 @@ import { Table } from 'reactstrap';
 
 function ModalEkle() {
   const [show, setShow] = useState(false);
+  const [goster, setGoster] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const detayKapat = () => setGoster(false);
+  const detayAc = () => setGoster(true);
 
   
     {/*----Ad----*/}
@@ -99,9 +103,16 @@ function ModalEkle() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      
+
+      
+      
       {ekles.map((t) => (
+        
         <Table striped >
-        <thead>
+          
+      <thead>
     <tr>
       <th>
         Ad
@@ -116,21 +127,54 @@ function ModalEkle() {
         Ülke
       </th>
     </tr>
-  </thead>
+      </thead>
+  
   <tbody>
+  
     <tr>
       
     <td className="list">{t.ekle}</td>
     <td className="list">{t.eklee}</td>
     <td className="list">{t.ekleee}</td>
     <td className="list">{t.ekleeee}</td>
+    <Button variant="primary" onClick={detayAc}>
+        Kişi Detayları
+    </Button>
+    <Modal
+        show={goster}
+        onHide={detayKapat}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Kişi Detayları</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h5>Ad</h5>
+        <td className="list">{t.ekle}</td>
+        <br/>
+          <h5>Soyad</h5>
+        <td className="list">{t.eklee}</td>
+        <br/>
+          <h5>Telefon Numarası</h5>
+        <td className="list">{t.ekleee}</td>
+        <br/>
+          <h5>Ülke</h5>
+        <td className="list">{t.ekleeee}</td>
+        <br/>
+        </Modal.Body>
+      </Modal>
     </tr>
    
   </tbody>
+  
       </Table>
+      
       ))}
+    
     </>
   );
 }
 
 export default ModalEkle;
+

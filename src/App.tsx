@@ -9,6 +9,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <span className="baslik">Telefon-Fihrist</span>
+      
       <ModalEkle/>
     </div>
   );
