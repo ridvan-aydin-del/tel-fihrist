@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+
 import Input from "./Input";
 import { Ekle } from "../model";
 import { Eklee } from "../model2";
@@ -12,6 +13,8 @@ import { Table } from 'reactstrap';
 
 
 function ModalEkle() {
+  
+
   const [show, setShow] = useState(false);
   const [goster, setGoster] = useState(false);
 
@@ -111,7 +114,7 @@ function ModalEkle() {
       {ekles.map((t) => (
         
         <Table striped >
-          
+        
       <thead>
     <tr>
       <th>
@@ -161,13 +164,13 @@ function ModalEkle() {
         <br/>
           <h5>Ülke</h5>
         <td className="list">{t.ekleeee}</td>
-        <br/>
+        
         </Modal.Body>
       </Modal>
     </tr>
    
   </tbody>
-  
+
       </Table>
       
       ))}
