@@ -12,8 +12,13 @@ import { Ulke } from "../model4";
 import { Table } from 'reactstrap';
 
 
+import { Pagination } from 'rsuite';
+
+
 function ModalEkle() {
-  
+
+  const [activePage, setActivePage] = React.useState(1);
+
 
   const [show, setShow] = useState(false);
   const [goster, setGoster] = useState(false);
@@ -28,6 +33,8 @@ function ModalEkle() {
     {/*----Ad----*/}
     const [ekle, setEkle] = useState<string>("");
     const [ekles, setEkles] = useState<Ekle[]>([]);
+
+    
   
     const elleEkle = (e: React.FormEvent) => {
       e.preventDefault();
@@ -109,10 +116,11 @@ function ModalEkle() {
 
       
 
-      
+     {/* <Pagination total={100} limit={10} activePage={activePage} onChangePage={setActivePage} /> */}
       
       {ekles.map((t) => (
-        
+     <>   
+     
         <Table striped >
         
       <thead>
@@ -143,7 +151,13 @@ function ModalEkle() {
     <Button variant="primary" onClick={detayAc}>
         Kişi Detayları
     </Button>
-    <Modal
+    
+    </tr>
+   
+  </tbody>
+
+      </Table>
+      <Modal
         show={goster}
         onHide={detayKapat}
         backdrop="static"
@@ -167,14 +181,10 @@ function ModalEkle() {
         
         </Modal.Body>
       </Modal>
-    </tr>
-   
-  </tbody>
-
-      </Table>
-      
+      </>
       ))}
-    
+      
+     <Pagination total={100} limit={20} activePage={1} onChangePage={setActivePage} />
     </>
   );
 }

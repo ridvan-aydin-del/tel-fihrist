@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ModalEkle from './components/ModalEkle'
 
 
+
 const App: React.FC = () => {
  
   return (
@@ -11,6 +12,7 @@ const App: React.FC = () => {
       <span className="baslik">Telefon-Fihrist</span>
       
       <ModalEkle/>
+      
     </div>
   );
 };
