@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-import Input from "./Input";
+import { Input } from "./Input";
 import { Ekle } from "../model";
 import { Eklee } from "../model2";
 import { Tel } from "../model3";
@@ -13,7 +13,13 @@ import { Table } from 'reactstrap';
 
 
 import { Pagination } from 'rsuite';
+import { useSelector } from 'react-redux';
 
+import { adlarReducer } from '../adReducer';
+
+import { AdState } from '../adReducer';
+import { useDispatch } from 'react-redux';
+import { addAd } from '../action'
 
 function ModalEkle() {
 
@@ -29,59 +35,15 @@ function ModalEkle() {
   const detayKapat = () => setGoster(false);
   const detayAc = () => setGoster(true);
 
-  
-    {/*----Ad----*/}
-    const [ekle, setEkle] = useState<string>("");
-    const [ekles, setEkles] = useState<Ekle[]>([]);
 
-    
-  
-    const elleEkle = (e: React.FormEvent) => {
-      e.preventDefault();
-      if (ekle) {
-        setEkles([...ekles, { id: Date.now(), ekle, isDone: false, idd: Date.now(), eklee, isDonee: false, iddd: Date.now(), ekleee, isDoneee: false , idddd: Date.now(), ekleeee, isDoneeee: false }]);
-        setEkle("");
-      }
-    }
-  {/*----Ad----*/}
-  {/*----soyAd----*/}
-    const [eklee,setEklee] = useState<string>("");
-    const [ekless, setEkless] = useState<Eklee[]>([]);
-  
-    const elleEklee = (t: React.FormEvent) => {
-      t.preventDefault();
-      if (eklee) {
-        setEkless([...ekless, { idd: Date.now(), eklee, isDonee: false }]);
-        setEklee("");
-      }
-    }
-  
-  {/*----soyAd----*/}
-  {/*----Tel----*/}
-  const [ekleee,setEkleee] = useState<string>("");
-  const [tell, setTell] = useState<Tel[]>([]);
-  
-  const elleEkleee = (a: React.FormEvent) => {
-    a.preventDefault();
-    if (ekleee) {
-      setTell([...tell, { iddd: Date.now(), ekleee, isDoneee: false }]);
-      setEkleee("");
-    }
+
+  const adlar = useSelector<AdState, AdState["adlar"]>((state) => state.adlar)
+  const dispatch = useDispatch()
+  const onAddAd = (ad:string,soyad:string) => {
+    dispatch(addAd(ad,soyad))
   }
-  
-  {/*----Tel----*/}
-  {/*----Ülke----*/}
-  const [ekleeee,setEkleeee] = useState<string>("");
-  const [ulkee, setUlkee] = useState<Ulke[]>([]);
-  
-  const elleEkleeee = (b: React.FormEvent) => {
-    b.preventDefault();
-    if (ekleeee) {
-      setUlkee([...ulkee, { idddd: Date.now(), ekleeee, isDoneeee: false }]);
-      setEkleeee("");
-    }
-  }
-  {/*----Ülke----*/}
+
+ 
 
   return (
     <>
@@ -99,10 +61,7 @@ function ModalEkle() {
           <Modal.Title>Kişi Ekle</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Input ekle={ekle} setEkle={setEkle} elleEkle={elleEkle}
-       eklee={eklee} setEklee={setEklee} elleEklee={elleEklee}
-       ekleee={ekleee} setEkleee={setEkleee} elleEkleee={elleEkleee}     
-       ekleeee={ekleeee} setEkleeee={setEkleeee} elleEkleeee={elleEkleeee}
+        <Input addAd={onAddAd}
         />
         
        
@@ -117,11 +76,45 @@ function ModalEkle() {
       
 
      {/* <Pagination total={100} limit={10} activePage={activePage} onChangePage={setActivePage} /> */}
-      
-      {ekles.map((t) => (
-     <>   
-     
-        <Table striped >
+    
+
+   
+     {adlar.map((ad,soyad) => {
+          return (
+          <Table>
+            <thead>
+              <tr>
+                <th>
+                  Ad
+                </th>
+              <th>
+                Soyad
+              </th>
+              <th>
+                Telefon Numarası
+              </th>
+              <th>
+                Ülke
+              </th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <tr>
+                <td className="list"  key={ad}><h6>{ad}</h6></td>
+                <td className="list"  key={soyad}><h6>{soyad}</h6></td>
+              </tr>
+              
+            </tbody>
+            
+          </Table>
+          
+        
+          )
+          
+        })}  
+      {/* 
+        
         
       <thead>
     <tr>
@@ -181,8 +174,8 @@ function ModalEkle() {
         
         </Modal.Body>
       </Modal>
-      </>
-      ))}
+      
+      ))} */}
       
      <Pagination total={100} limit={20} activePage={1} onChangePage={setActivePage} />
     </>
